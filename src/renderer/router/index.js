@@ -8,12 +8,12 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'library',
+      path     : '/',
+      name     : 'library',
       component: Library
     },
     {
-      path: '*',
+      path    : '*',
       redirect: '/'
     }
   ]

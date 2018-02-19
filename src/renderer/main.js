@@ -10,6 +10,7 @@ Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+/* eslint-disable key-spacing */
 new Vue({
   components: { App },
   router,
