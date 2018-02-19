@@ -1,0 +1,16 @@
+////
+/// Patterns
+///
+/// Stylesheets in this directory describe objects that have children which they
+/// effect in some way.
+///
+/// @example scss
+///   .hero-header__title {}
+///   .hero-header__description {}
+///
+/// Import all components into this file to include them in the app.
+///
+////
+
+@import "container";
+@import "column";

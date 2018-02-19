@@ -1,0 +1,14 @@
+.layout-test {
+  [class^="column--"] {
+    align-items: center;
+    background-color: $action-color;
+    color: #fff;
+    display: flex;
+    height: 10rem;
+    justify-content: center;
+    margin-bottom: $base-spacing;
+  }
+
+  h1 { font-size: modular-scale(4); }
+  p { font-size: modular-scale(1); }
+}

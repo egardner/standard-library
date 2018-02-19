@@ -1,0 +1,6 @@
+.container {
+  @include grid-container;
+  @include margin(null auto);
+  max-width: 88rem;
+  position: relative;
+}
