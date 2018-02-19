@@ -11,8 +11,8 @@
 
 <script>
 export default {
-  name: 'library-item',
-  props: ['book'],
+  name    : 'library-item',
+  props   : ['book'],
   computed: {
     authors () {
       if (Array.isArray(this.book.author)) {

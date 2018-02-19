@@ -33,9 +33,9 @@
   import SystemInformation from './LandingPage/SystemInformation'
 
   export default {
-    name: 'landing-page',
+    name      : 'landing-page',
     components: { SystemInformation },
-    methods: {
+    methods   : {
       open (link) {
         this.$electron.shell.openExternal(link)
       }
