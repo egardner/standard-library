@@ -18,6 +18,7 @@
  * @property  {array|string}   categories
  * @property  {string}         cover
  * @property  {string}         thumbnail
+ * @property  {string}         epub
  */
 
 /**
@@ -27,7 +28,8 @@
  */
 
 import axios from 'axios'
-const BOOKS_URL = 'https://standardebooks.org/opds/all'
+const BASE_URL = 'https://standardebooks.org'
+const OPDS_PATH = '/opds/all'
 
 export default {
 
@@ -37,7 +39,7 @@ export default {
    * successful this resolves to an array of Book objects.
    */
   get () {
-    return axios.get(BOOKS_URL).then(response => {
+    return axios.get(BASE_URL + OPDS_PATH).then(response => {
       let parser = new DOMParser()
       let feed = parser.parseFromString(response.data, 'application/xml')
       let books = Array.from(feed.querySelectorAll('entry'))
@@ -82,9 +84,38 @@ export default {
       return categoryElement.attributes.getNamedItem('term').value
     }
 
-    // function coverURL (doc) {
-    //   let imageLinks = doc.querySelectorAll('link[]')
-    // }
+    /**
+     * Parses an XML entry node and finds the link element whose href ends in
+     * "cover.jpg"
+     * @param {node} bookXML
+     * @returns {string} cover URL
+     */
+    function coverURL (doc) {
+      let coverLink = doc.querySelector('link[href$="cover.jpg"]')
+      return BASE_URL + coverLink.getAttribute('href')
+    }
+
+    /**
+     * Parses an XML entry node and finds the link element whose rel is defined
+     * as a thumbnail
+     * @param {node} bookXML
+     * @returns {string} cover thumbnail url
+     */
+    function thumbnailURL (doc) {
+      let thumbnailLink = doc.querySelector('link[rel="http://opds-spec.org/image/thumbnail"]')
+      return BASE_URL + thumbnailLink.getAttribute('href')
+    }
+
+    /**
+     * Parses an XML entry node and finds the link element whose rel is defined
+     * as an epub (and with href ending in '.epub' to avoid getting the EPUB3 version)
+     * @param {node} bookXML
+     * @returns {string} epub url
+     */
+    function epubURL (doc) {
+      let thumbnailLink = doc.querySelector('link[type="application/epub+zip"][href$="epub"]')
+      return BASE_URL + thumbnailLink.getAttribute('href')
+    }
 
     // Alias DOM query methods for clarity
     let q = bookXML.querySelector.bind(bookXML)
@@ -100,8 +131,9 @@ export default {
       summary   : q('summary').textContent.trim(),
       content   : q('content').textContent.trim(),
       categories: Array.from(qA('category')).map(c => categoryData(c)),
-      cover     : undefined,
-      thumbnail : undefined
+      cover     : coverURL(bookXML),
+      thumbnail : thumbnailURL(bookXML),
+      epub      : epubURL(bookXML)
     }
   }
 }
