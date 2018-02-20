@@ -1,34 +1,50 @@
 <template>
-  <div class="library">
-    <header class="container">
-      <div class="column--12">
-        <h1>Standard Library</h1>
-        <h2>Books</h2>
-        
-        <h3>Select by Category</h3>
-        <select v-model="categorySelection" id="" name="">
-          <option value="ALL">All Books</option>
-          <option v-for="category in categories" :value="category">{{ category }}</option>
-        </select>
+  <div class="section">
+    <div class="container">
+      <h1 class="title is-1">Standard Library</h1>
+      <h2 class="subtitle is-3">Books</h2>
+      
+      <div class="field">
+        <div class="columns">
 
-        <h3>Select by Author</h3>
-        <select v-model="authorSelection" id="" name="">
-          <option value="ALL">All Books</option>
-          <option v-for="author in authors" :value="author">{{ author }}</option>
-        </select>
+          <div class="column">
+            <div class="control is-expanded">
+              <label class="label" for="">Filter by Author</label>
+              <span class="select is-fullwidth">
+                <select v-model="authorSelection" id="" name="">
+                  <option value="ALL">All</option>
+                  <option v-for="author in authors"
+                          :value="author">{{ author }}</option>
+                </select>
+              </span>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="control is-expanded">
+              <label class="label" for="">Filter by Category</label>
+              <span class="select is-fullwidth">
+                <select v-model="categorySelection" id="" name="">
+                  <option value="ALL">All</option>
+                  <option v-for="category in categories"
+                          :value="category">{{ category }}</option>
+                </select>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+        
+      <ul v-if="ready" class="columns is-multiline is-mobile">
+        <li v-for="book in filteredBooks" class="column is-one-quarter">
+          <library-item :book="book"></library-item>
+        </li>
+      </ul>
+
+      <div v-else>Loading...</div>
 
       </div>
-    </header>
-
-    <ul v-if="ready" class="container">
-      <li v-for="book in filteredBooks" class="">
-        <library-item :book="book"></library-item>
-      </li>
-    </ul>
-
-    <div v-else>
-      Loading...
-    </div>
   </div>
 </template>
 

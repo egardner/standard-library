@@ -7,19 +7,5 @@
 ////
 
 @import "~normalize-css/normalize.css";
-@import "bourbon";
-@import "neat";
-@import "fonts/fonts";
+@import "~bulma";
 
-@import "base/base";
-@import "components/components";
-@import "patterns/patterns";
-@import "views/views";
-
-// Delete me!
-body {
-  @include grid-visual;
-  @include grid-media($neat-grid-tablet) {
-    @include grid-visual($grid-guide-color, $neat-grid-tablet);
-  }
-}

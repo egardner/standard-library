@@ -1,12 +1,11 @@
 <template>
   <div class="card">
-    <div
-      class="card__image"
-      :style="`background-image: url(${book.thumbnail})`">
+    <div class="card-image">
+      <img alt="" :src="book.thumbnail"/>
     </div>
-    <div class="card__info">
-      <h1 class="card__title">{{ book.title }}</h1>
-      <h2 class="card__subtitle">{{ authorString }}</h2>
+    <div class="card-info">
+      <h1 class="title">{{ book.title }}</h1>
+      <h2 class="subtitle">{{ authorString }}</h2>
     </div>
   </div>
 </template>
@@ -28,5 +27,24 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.card {
+  position: relative;
+}
+
+.card-info {
+  background-color: #ff0000;
+  color: #fff;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  transition: 500ms ease opacity;
+  top: 0;
+  width: 100%;
+
+  &:hover {
+    opacity: 1;
+  }
+}
 </style>
