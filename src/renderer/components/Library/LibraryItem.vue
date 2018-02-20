@@ -1,26 +1,32 @@
 <template>
-  <div>
-    <img alt="" :src="book.thumbnail"/>
-    <h1>{{ book.title }}</h1>
-    <ul>
-      <li v-for="author in book.authors">{{ author.name }}</li>
-    </ul>
-    <p>
-      {{ book.summary }}
-    </p>
-    <h3>Categories</h3>
-    <ul>
-      <li v-for="category in book.categories">{{ category }}</li>
-    </ul>
+  <div class="card">
+    <div
+      class="card__image"
+      :style="`background-image: url(${book.thumbnail})`">
+    </div>
+    <div class="card__info">
+      <h1 class="card__title">{{ book.title }}</h1>
+      <h2 class="card__subtitle">{{ authorString }}</h2>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name : 'library-item',
-  props: ['book']
+  props: ['book'],
+  computed: {
+    authorString () {
+      if (this.book.authors.length > 1) {
+        let str = this.book.authors.map(a => a.name).join(', ')
+        return `By ${str}`
+      } else {
+        return `By ${this.book.authors[0].name}`
+      }
+    }
+  }
 }
 </script>
 
-<style>
+<style scoped>
 </style>
