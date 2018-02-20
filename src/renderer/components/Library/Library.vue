@@ -3,10 +3,27 @@
     <div class="container">
       <h1 class="title is-1">Standard Library</h1>
       <h2 class="subtitle is-3">Books</h2>
-      
+    </div>
+
+    <div class="container">
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <input class="input is-medium"
+                  name=""
+                  type="text"
+                  value=""
+                  disabled
+                  placeholder="The Hound of the Baskervilles"/>
+        </div>
+        <div class="control">
+          <a class="button is-info is-medium">
+            Search
+          </a>
+        </div>
+      </div>
+
       <div class="field">
         <div class="columns">
-
           <div class="column">
             <div class="control is-expanded">
               <label class="label" for="">Filter by Author</label>
@@ -35,7 +52,7 @@
 
         </div>
       </div>
-        
+
       <ul v-if="ready" class="columns is-multiline is-mobile">
         <li v-for="book in filteredBooks" class="column is-one-quarter">
           <library-item :book="book"></library-item>
@@ -44,7 +61,7 @@
 
       <div v-else>Loading...</div>
 
-      </div>
+    </div>
   </div>
 </template>
 

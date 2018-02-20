@@ -32,6 +32,10 @@ export default {
   position: relative;
 }
 
+.card-image {
+  line-height: 0;
+}
+
 .card-info {
   background-color: #ff0000;
   color: #fff;
