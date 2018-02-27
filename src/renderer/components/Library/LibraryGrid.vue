@@ -10,27 +10,19 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import LibraryItem from '@/components/Library/LibraryItem'
-import BooksService from '@/services/BooksService'
 export default {
   name      : 'library-grid',
   components: { LibraryItem },
-  data () {
-    return {
-      books: [],
-      ready: false
-    }
-  },
-  created () {
-    this.fetchBooks()
+  computed  : {
+    ...mapState(['books'])
   },
   methods: {
-    fetchBooks () {
-      return BooksService.get().then(response => {
-        this.books = response
-        this.ready = true
-      })
-    }
+    ...mapActions(['loadBooks'])
+  },
+  created () {
+    this.loadBooks()
   }
 }
 </script>

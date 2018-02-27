@@ -39,13 +39,16 @@ export default {
    * successful this resolves to an array of Book objects.
    */
   get () {
-    return axios.get(BASE_URL + OPDS_PATH).then(response => {
-      let parser = new DOMParser()
-      let feed = parser.parseFromString(response.data, 'application/xml')
-      let books = Array.from(feed.querySelectorAll('entry'))
-
-      return books.map(b => this.generateBookData(b))
-    })
+    return axios.get(BASE_URL + OPDS_PATH)
+      .then(response => {
+        let parser = new DOMParser()
+        let feed = parser.parseFromString(response.data, 'application/xml')
+        let books = Array.from(feed.querySelectorAll('entry'))
+        return books.map(b => this.generateBookData(b))
+      })
+      .catch(error => {
+        return error
+      })
   },
 
   /**
