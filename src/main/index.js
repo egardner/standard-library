@@ -25,7 +25,7 @@ function createWindow () {
     minWidth      : 800,
     titleBarStyle : 'hiddenInset',
     useContentSize: true,
-    vibrancy      : 'appearance-based',
+    // vibrancy      : 'appearance-based',
     width         : 800
   })
 
