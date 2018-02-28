@@ -16,7 +16,9 @@ export default {
   name      : 'library-grid',
   components: { LibraryItem },
   computed  : {
-    ...mapState(['books'])
+    ...mapState({
+      books: (state) => state.library.books
+    })
   },
   methods: {
     ...mapActions(['loadBooks'])

@@ -3,14 +3,12 @@
     <div class="level-item">
       <div class="tabs is-centered is-toggle">
         <ul>
-          <li class="is-active">
-            <a href="">All Books</a>
-          </li>
-          <li>
-            <a href="">Authors</a>
-          </li>
-          <li>
-            <a href="">Subjects</a>
+          <li v-for="(view, index) in views"
+              :class="{ 'is-active': isViewActive(view.value) }"
+              :key="`view-${index}`" >
+            <a @click="updateView(view.value)">
+              <span>{{ view.name }}</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -19,8 +17,23 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'navbar'
+  name    : 'navbar',
+  computed: {
+    ...mapState({
+      views       : (state) => state.library.viewOptions,
+      selectedView: (state) => state.library.selectedView
+    })
+  },
+  methods: {
+    isViewActive (view) {
+      return view === this.selectedView
+    },
+    updateView (newView) {
+      this.$store.dispatch('updateSelectedView', { view: newView })
+    }
+  }
 }
 </script>
 
