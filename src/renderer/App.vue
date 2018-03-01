@@ -11,5 +11,8 @@
 </script>
 
 <style>
-  /* CSS */
+body {
+  height: 100vh;
+  overflow: hidden;
+}
 </style>
