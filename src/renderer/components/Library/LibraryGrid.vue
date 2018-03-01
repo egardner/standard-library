@@ -10,14 +10,14 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import LibraryItem from '@/components/Library/LibraryItem'
 export default {
   name      : 'library-grid',
   components: { LibraryItem },
   computed  : {
-    ...mapState({
-      books: (state) => state.library.books
+    ...mapGetters({
+      books: 'filteredBooks'
     })
   },
   methods: {
