@@ -25,7 +25,11 @@
       <div class="level-item">
         <div class="field">
           <div class="control">
-            <input class="input is-small search-input" type="text" placeholder="Rounded input">
+            <input class="input is-small search-input"
+                   :value="query"
+                   @input="updateQuery"
+                   type="text"
+                   placeholder="Rounded input">
           </div>
         </div>
       </div>
@@ -41,7 +45,8 @@ export default {
   computed: {
     ...mapState({
       views       : (state) => state.library.viewOptions,
-      selectedView: (state) => state.library.selectedView
+      selectedView: (state) => state.library.selectedView,
+      query       : (state) => state.library.query
     })
   },
   methods: {
@@ -50,6 +55,9 @@ export default {
     },
     updateView (newView) {
       this.$store.dispatch('updateSelectedView', { view: newView })
+    },
+    updateQuery (e) {
+      this.$store.commit('updateQuery', e.target.value)
     }
   }
 }

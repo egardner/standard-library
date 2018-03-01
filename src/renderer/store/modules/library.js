@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 const state = {
   books       : [],
+  query       : '',
   selectedView: 'all',
   viewOptions : [
     { name: 'All Books', value: 'all' },
@@ -18,6 +19,10 @@ const mutations = {
 
   changeView (state, payload) {
     state.selectedView = payload.view
+  },
+
+  updateQuery (state, query) {
+    state.query = query
   }
 }
 
