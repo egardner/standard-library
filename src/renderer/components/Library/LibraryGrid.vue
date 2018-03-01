@@ -35,22 +35,9 @@ export default {
 $grid-gap: 2.5em;
 
 .library-grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: -($grid-gap) 0 $grid-gap -($grid-gap);
-  
-  &__item {
-    flex: 0 1 33%;
-    padding: $grid-gap 0 0 $grid-gap;
-    
-    @media screen and (min-width: 900px) {
-      flex: 0 1 25%;
-    }
-    
-    @media screen and (min-width: 1200px) {
-      flex: 0 1 20%;
-    }
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 150px);
+  grid-gap: 2rem 3rem;
+  justify-content: center;
 }
 </style>

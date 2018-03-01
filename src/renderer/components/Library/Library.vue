@@ -6,10 +6,13 @@
            :class="{ 'is-visible': panelVisible }">
         
         <div v-if="selectedView === 'authors'" class="panel">
-          <div class="panel-heading">
-            <h1 class="title is-4">Authors</h1>
-          </div>
           <ul>
+            <li class="">
+              <a href="" class="panel-block">
+                All Authors
+              </a>
+            </li>
+
             <li v-for="author in authors" class="">
               <a href="" class="panel-block">
                 {{ author }}
@@ -19,10 +22,13 @@
         </div>
         
         <div v-else-if="selectedView === 'subjects'" class="panel">
-          <div class="panel-heading">
-            <h1 class="title is-4">Subjects</h1>
-          </div>
           <ul>
+            <li>
+              <a href="#" class="panel-block">
+                All Subjects
+              </a>
+            </li>
+
             <li v-for="subject in subjects">
               <a href="#" class="panel-block">
                 {{ subject }}
@@ -73,12 +79,13 @@ export default {
   flex-direction: row;
   flex-wrap: no-wrap;
   height: calc(100vh - 59px);
-  margin-top: 59px;
+  margin-top: 67px;
   overflow-y: hidden;
   width: 100%;
   
   &__panel {
     background-color: $light;
+    font-size: 0.75em;
     height: 100%;
     overflow: hidden;
     max-width: 0;
@@ -86,17 +93,26 @@ export default {
     width: 0%;
     
     &.is-visible {
-      // border-right: solid 1px $grey-lighter;
       flex: 25%;
       -webkit-overflow-scroll: touch;
       overflow-y: scroll;
-      // padding: 1rem;
       max-width: 25%;
       width: 25%;
     }
 
     .panel-heading {
       border-radius: 0;
+      border-top: 0;
+    }
+
+    .panel-block {
+      border-bottom: 0;
+      font-size: 0.875em;
+
+      &:hover {
+        background-color: $link;
+        color: $link-invert;
+      }
     }
   }
   
