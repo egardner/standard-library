@@ -23,9 +23,8 @@ function createWindow () {
     height        : 600,
     minHeight     : 600,
     minWidth      : 800,
-    titleBarStyle : 'hiddenInset',
+    titleBarStyle : 'hidden',
     useContentSize: true,
-    // vibrancy      : 'appearance-based',
     width         : 800
   })
 
