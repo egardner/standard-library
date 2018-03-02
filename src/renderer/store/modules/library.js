@@ -62,19 +62,7 @@ const getters = {
   },
   filteredBooks (state) {
     return state.books.filter(book => {
-      for (var prop in book) {
-        if (_.isObject(book[prop])) {
-          for (var subprop in book[prop]) {
-            return _.includes(book[prop][subprop], state.query)
-          }
-        } else if (_.isArray(book[prop])) {
-          book[prop].forEach(i => {
-            return _.includes(book[prop][i], state.query)
-          })
-        } else {
-          return _.includes(book[prop], state.query)
-        }
-      }
+      return _.includes(JSON.stringify(book), state.query)
     })
   }
 }
