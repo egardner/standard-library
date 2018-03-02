@@ -62,7 +62,7 @@ const getters = {
   },
   filteredBooks (state) {
     return state.books.filter(book => {
-      return _.includes(JSON.stringify(book), state.query)
+      return _.includes(JSON.stringify(book).toLowerCase(), state.query)
     })
   }
 }
