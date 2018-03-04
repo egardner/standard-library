@@ -23,13 +23,18 @@
     
     <div class="level-right">
       <div class="level-item">
-        <div class="field">
+        <div class="field has-addons">
           <div class="control">
-            <input class="input is-small search-input"
+            <input class="input is-small is-rounded search-input"
                    :value="query"
                    @input="updateQuery"
                    type="text"
-                   placeholder="Rounded input">
+                   placeholder="Search">
+          </div>
+          <div class="control">
+            <a class="button is-small is-rounded" @click="clearQuery">
+              ×
+            </a>
           </div>
         </div>
       </div>
@@ -58,6 +63,9 @@ export default {
     },
     updateQuery (e) {
       this.$store.commit('updateQuery', e.target.value)
+    },
+    clearQuery () {
+      this.$store.commit('updateQuery', '')
     }
   }
 }
