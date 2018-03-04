@@ -67,12 +67,10 @@ export default {
     },
     
     updateSelectedAuthor (newAuthor) {
-      console.log(newAuthor)
       this.$store.commit('updateAuthor', newAuthor)
     },
     
     updateSelectedSubject (newSubject) {
-      console.log(newSubject)
       this.$store.commit('updateSubject', newSubject)
     }
   }
